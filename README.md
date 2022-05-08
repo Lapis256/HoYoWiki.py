@@ -1,2 +1,2 @@
 # HoYoWiki.py
-HoYoWiki API unofficial wrapper
+HoYoWiki API unofficial wrapper(WIP)
