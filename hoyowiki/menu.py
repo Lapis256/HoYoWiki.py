@@ -1,10 +1,11 @@
 from __future__ import annotations
+
 from typing import TYPE_CHECKING, Iterator
 
-from .filter import parse_filters, FilterValue
 from .entry_page import parse_entry_pages, EntryPage
-from .language import Language
 from .errors import PageNotExist
+from .filter import parse_filters, FilterValue
+from .language import Language
 
 if TYPE_CHECKING:
     from .http import HTTPClient

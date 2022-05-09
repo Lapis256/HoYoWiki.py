@@ -1,12 +1,14 @@
 from __future__ import annotations
-from aiohttp import ClientSession
+
 from typing import TYPE_CHECKING
+
+from aiohttp import ClientSession
 
 from .errors import PageNotExist
 
 if TYPE_CHECKING:
     from .language import Language
-    from .types.http import Responce
+    from .types.http import Response
     from .types.menu import MenusPayload
     from .types.filter import FiltersPayload
     from .types.entry_page import (
@@ -43,7 +45,7 @@ class HTTPClient:
             if res.status != 200:
                 raise
 
-            data: Responce = await res.json()
+            data: Response = await res.json()
             if data["retcode"] in [404, -1]:
                 raise PageNotExist
 
@@ -64,7 +66,7 @@ class HTTPClient:
         )
         return data
 
-    def get_entry_page_list(
+    async def get_entry_page_list(
         self,
         id: str,
         *,
@@ -74,7 +76,7 @@ class HTTPClient:
         use_es: bool,
         language: Language | None,
     ) -> EntryPageListPayload:
-        return self.request(
+        return await self.request(
             "POST",
             "get_entry_page_list",
             language=language,

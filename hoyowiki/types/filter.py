@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from typing import TypedDict
 
 
@@ -7,11 +8,11 @@ class FilterValue(TypedDict):
     value: str
 
 
-class Filter(TypedDict):
+class FilterPayload(TypedDict):
     key: str
     text: str
     values: list[FilterValue]
 
 
 class FiltersPayload(TypedDict):
-    filters: list[Filter]
+    filters: list[FilterPayload]

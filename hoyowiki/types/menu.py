@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from typing import TypedDict
 
 
@@ -7,7 +8,7 @@ class Menu(TypedDict):
     id: str
     name: str
     style: str
-    sub_menus: list
+    sub_menus: list[Menu]
 
 
 class MenusPayload(TypedDict):

@@ -1,11 +1,12 @@
 from __future__ import annotations
-from typing import TypedDict
+
+from typing import TypedDict, Union
 
 from .filter import FiltersPayload
 from .menu import MenusPayload
 
 
-class Responce(TypedDict):
+class Response(TypedDict):
     retcode: int
     message: str
-    data: FiltersPayload | MenusPayload
+    data: Union[FiltersPayload, MenusPayload]

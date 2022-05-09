@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import TypedDict
+
+from typing import TypedDict, Union
 
 
 class FilterValue(TypedDict):
@@ -10,7 +11,7 @@ class CharacterFilterValues(TypedDict, total=False):
     character_weapon: FilterValue
     character_property: FilterValue
     character_rarity: FilterValue
-    character_region: FilterValue | None
+    character_region: FilterValue
     character_vision: FilterValue
 
 
@@ -40,17 +41,19 @@ class EnemyDisplayField(TypedDict):
 
 
 class EntryPage(TypedDict, total=False):
-    filter_values: CharacterFilterValues | WeaponFilterValues | ReliquaryFilterValues
+    filter_values: Union[
+        CharacterFilterValues, WeaponFilterValues, ReliquaryFilterValues
+    ]
     icon_url: str
     name: str
-    display_field: ReliquaryDisplayField | EnemyDisplayField | None
-    entry_page_id: str | None
-    id: str | None
-    desc: str | None
-    header_img_url: str | None
-    modules: list[Module] | None
-    menu_id: str | None
-    menu_name: str | None
+    display_field: Union[ReliquaryDisplayField | EnemyDisplayField]
+    entry_page_id: str
+    id: str
+    desc: str
+    header_img_url: str
+    modules: list[Module]
+    menu_id: str
+    menu_name: str
 
 
 class Component(TypedDict):

@@ -1,22 +1,19 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from .types.filter import (
-        Filter as FilterPayload,
-        FilterValue as FilterValuePayload,
-        Filters,
-    )
+    from .types.filter import FilterPayload
 
 
-def parse_filters(filters: Filters):
+def parse_filters(filters: list[FilterPayload]):
     def func():
-        for filter in filters:
-            values = filter.pop("values")
+        for _filter in filters:
             yield Filter(
-                **filter,
-                values=list(map(FilterValue.from_json, values)),
+                _filter["key"],
+                _filter["text"],
+                list(map(FilterValue.from_json, _filter["values"])),
             )
 
     return list(func())
